@@ -22,4 +22,4 @@ networks:
 wallets:
   from_key: ${PRIVATE_KEY}
 settings:
-  gas_limit: "2074044"
+  gas_limit: "20740440"

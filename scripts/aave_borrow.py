@@ -14,14 +14,14 @@ def main():
     lending_pool = get_lending_pool()
     approve_erc20(amount, lending_pool.address, erc20_address, account)
     print("Depositing...")
-    # tx = lending_pool.deposit(
-    #     erc20_address,
-    #     amount,
-    #     account.address,
-    #     0,
-    #     {"from": account, "gas_limit": 2074044, "allow_revert": True},
-    # )
-    # tx.wait(1)
+    tx = lending_pool.deposit(
+        erc20_address,
+        amount,
+        account.address,
+        0,
+        {"from": account},
+    )
+    tx.wait(1)
     print("Deposited!")
     borrowable_eth, total_debt = get_borrowable_data(lending_pool, account)
     print("Let's borrow!")
@@ -46,6 +46,7 @@ def main():
     get_borrowable_data(lending_pool, account)
     repay_all(amount, lending_pool, account)
     print("Repayed!")
+    get_borrowable_data(lending_pool, account)
 
 
 def repay_all(amount, lending_pool, account):
